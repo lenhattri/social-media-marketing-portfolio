@@ -854,13 +854,150 @@ h2 {
 
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Stagger animations for sequential reveal */
+.hero-copy.reveal { transition-delay: 0s; }
+.hero-copy.reveal.is-visible { animation: slideInFade 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+.profile-badge.reveal { transition-delay: 0.1s; }
+.profile-badge.reveal.is-visible { animation: slideInFade 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards; }
+
+.hero-visual.reveal { transition-delay: 0s; }
+.hero-visual.reveal.is-visible { animation: slideInFadeRight 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* Card stagger animations */
+.foundation-card {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.foundation-card.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.service-card, .info-card, .case-card, .process-step, .testimonial-card, .photo-slot {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--stagger-delay, 0s),
+              transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--stagger-delay, 0s);
+}
+
+.reveal.is-visible.service-card,
+.reveal.is-visible.info-card,
+.reveal.is-visible.case-card,
+.reveal.is-visible.process-step,
+.reveal.is-visible.testimonial-card,
+.reveal.is-visible.photo-slot {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Section heading entrance */
+.section-heading.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease 0.05s, transform 0.7s ease 0.05s;
+}
+
+.section-heading.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FAQ items slide in */
+.faq-item.reveal {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s ease var(--stagger-delay, 0s), 
+              transform 0.6s ease var(--stagger-delay, 0s);
+}
+
+.faq-item.reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Contact section elements */
+.contact-copy.reveal {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.contact-copy.reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contact-form.reveal {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.contact-form.reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stat cards counter animation */
+.stat-card {
+  opacity: 0;
+  transform: scale(0.88) translateY(16px);
+  transition: opacity 0.65s ease var(--stagger-delay, 0s),
+              transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) var(--stagger-delay, 0s);
+}
+
+.stats-section.reveal.is-visible .stat-card {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Hero proof items */
+.hero-proof li.reveal {
+  opacity: 0;
+  transform: translateY(12px) scale(0.92);
+  transition: opacity 0.55s ease var(--stagger-delay, 0s),
+              transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--stagger-delay, 0s);
+}
+
+.hero-proof li.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Keyframe animations for premium entrance effects */
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(48px) translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
 }
 
 @keyframes orbDrift {

@@ -38,10 +38,40 @@ if (backToTop) {
   });
 }
 
+// Enhanced intersection observer with stagger animation support
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
+      
+      // Add stagger delay based on element position within grid/container
+      const parent = entry.target.parentElement;
+      if (parent && (parent.classList.contains('service-grid') || 
+                     parent.classList.contains('about-grid') ||
+                     parent.classList.contains('case-grid') ||
+                     parent.classList.contains('process-grid') ||
+                     parent.classList.contains('testimonial-grid') ||
+                     parent.classList.contains('photo-grid') ||
+                     parent.classList.contains('foundation-grid') ||
+                     parent.classList.contains('stats-section') ||
+                     parent.classList.contains('faq-list') ||
+                     parent.classList.contains('hero-proof'))) {
+        
+        const siblings = Array.from(parent.children).filter(el => 
+          el.classList.contains('reveal') || 
+          el.classList.contains('reveal') ||
+          el.tagName === 'LI' ||
+          el.classList.contains('stat-card') ||
+          el.classList.contains('faq-item')
+        );
+        
+        const index = siblings.indexOf(entry.target);
+        if (index >= 0) {
+          const delay = index * 0.08;
+          entry.target.style.setProperty('--stagger-delay', `${delay}s`);
+        }
+      }
+      
       entry.target.classList.add('is-visible');
       observer.unobserve(entry.target);
 
@@ -50,7 +80,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.16 }
+  { threshold: 0.12 }
 );
 
 revealItems.forEach((item) => observer.observe(item));
@@ -60,12 +90,13 @@ const animateCounter = (node) => {
   node.dataset.counted = 'true';
 
   const target = Number(node.dataset.counter || 0);
-  const duration = 1200;
+  const duration = 1800;
   const start = performance.now();
 
   const step = (now) => {
     const progress = Math.min((now - start) / duration, 1);
-    const value = Math.floor(target * (0.15 + progress * 0.85));
+    const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+    const value = Math.floor(target * easeOutQuad);
     node.textContent = progress === 1 ? String(target) : String(value);
 
     if (progress < 1) {
@@ -96,3 +127,15 @@ if (form) {
     form.reset();
   });
 }
+
+// Add subtle parallax effect to hero section on scroll
+window.addEventListener('scroll', () => {
+  const heroCopy = document.querySelector('.hero-copy');
+  const heroVisual = document.querySelector('.hero-visual');
+  
+  if (heroCopy && heroVisual && window.scrollY < 600) {
+    const scrolled = window.scrollY * 0.5;
+    heroCopy.style.transform = `translateY(${scrolled * 0.08}px)`;
+    heroVisual.style.transform = `translateY(${scrolled * -0.12}px)`;
+  }
+}, { passive: true });
