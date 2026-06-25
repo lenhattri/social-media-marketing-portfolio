@@ -32,6 +32,17 @@ if (navToggle && nav) {
   });
 }
 
+// Prevent the Download CV anchor from jumping to top when clicked.
+// Replace behavior with actual download URL when CV file is available.
+const downloadCv = document.querySelector('.download-cv');
+if (downloadCv) {
+  downloadCv.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Temporary friendly message — swap for real download/link later
+    alert('CV đang được cập nhật. Vui lòng liên hệ hello@nttq.vn để nhận CV.');
+  });
+}
+
 if (backToTop) {
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
