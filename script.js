@@ -6,8 +6,6 @@ const revealItems = document.querySelectorAll('.reveal');
 const counters = document.querySelectorAll('[data-counter]');
 const faqItems = document.querySelectorAll('.faq-item');
 const form = document.querySelector('.contact-form');
-const heroVisual = document.querySelector('.hero-visual');
-const tiltItems = document.querySelectorAll('.dashboard-card, .floating-note');
 
 const setHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 10);
@@ -88,25 +86,6 @@ faqItems.forEach((item) => {
     item.querySelector('.faq-icon').textContent = expanded ? '+' : '–';
   });
 });
-
-if (heroVisual && tiltItems.length > 0) {
-  heroVisual.addEventListener('mousemove', (event) => {
-    const rect = heroVisual.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-    tiltItems.forEach((item, index) => {
-      const depth = (index + 1) * 1.6;
-      item.style.transform = `translate3d(${x * depth * 4}px, ${y * depth * 4}px, 0)`;
-    });
-  });
-
-  heroVisual.addEventListener('mouseleave', () => {
-    tiltItems.forEach((item) => {
-      item.style.transform = '';
-    });
-  });
-}
 
 if (form) {
   form.addEventListener('submit', (event) => {

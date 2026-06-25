@@ -15,12 +15,12 @@
 - Ưu tiên câu khẳng định rõ ràng, mô tả thật, tránh overclaim.
 
 ## 4) Concept thị giác
-- Theme đề xuất: dark mode sang, gradient neon, glassmorphism nhẹ, chuyển động mịn.
+- Theme đề xuất: sáng, tối giản, hài hòa, nữ tính nhưng vẫn có cá tính.
 - Cảm giác: “portfolio cá nhân xịn” + “newbie có tiềm năng”.
 - Màu chính:
-  - Nền: #0b1020 / #0f172a
-  - Accent: cyan, violet, lime
-  - Text: white, slate, muted gray
+  - Nền: trắng ngà, be nhạt, xám ấm
+  - Accent: hồng dusty, lavender dịu, sage
+  - Text: slate đậm, muted gray
 - Font: system stack để tối ưu tốc độ và độ ổn định.
 
 ## 5) Cấu trúc trang
@@ -40,13 +40,22 @@
   - số dự án học tập/thực hành
   - số internship/collab
   - số tool/skill đã dùng
-- Visual card dạng dashboard mini.
+- Visual card dạng dashboard mini + một khối ảnh thật nổi bật ở đầu trang.
 
 ### 5.3 Social proof nhẹ
 - Không cần “logo khách hàng lớn”.
 - Có thể dùng danh sách project types, tools, trường/lớp, cert, hoặc nhận xét từ mentor.
+- Ảnh chân dung thật nên được ưu tiên ở hero hoặc section đầu, sau đó mới tới gallery bổ trợ.
 
-### 5.4 Skills / Services
+### 5.4 Marketing foundations
+- Bố cục đầu trang nên đi theo chuỗi:
+  - Audience
+  - Insight
+  - Message
+  - Proof
+- Mỗi mục cần ngắn, rõ, dễ scan, để người xem hiểu nhanh portfolio này đang phục vụ ai và chứng minh điều gì.
+
+### 5.5 Skills / Services
 - 4–6 nhóm năng lực:
   - Content Planning
   - Copywriting
@@ -56,7 +65,7 @@
   - Creative Research
 - Mỗi card có mô tả ngắn, tool hoặc output cụ thể.
 
-### 5.5 Projects
+### 5.6 Projects
 - 3 dự án mẫu theo format:
   - Bối cảnh
   - Mục tiêu
@@ -64,7 +73,7 @@
   - Kết quả học được
 - Ưu tiên mô tả rõ đóng góp cá nhân hơn là số liệu phóng đại.
 
-### 5.6 Process
+### 5.7 Process
 - Quy trình 4 bước:
   1. Audit
   2. Strategy
@@ -72,21 +81,21 @@
   4. Optimize
 - Hiển thị dạng timeline hoặc step cards.
 
-### 5.7 Stats
+### 5.8 Stats
 - Bộ số liệu nhỏ, animate khi vào viewport.
 - Ví dụ: projects, tools, presentations, internships.
 
-### 5.8 Testimonials
+### 5.9 Testimonials
 - 3 nhận xét ngắn từ mentor, teammate, hoặc mô phỏng theo format portfolio cá nhân.
 
-### 5.9 FAQ
+### 5.10 FAQ
 - Trả lời các câu hỏi thường gặp:
   - Bạn là fresher nhưng mạnh ở mảng nào?
   - Có kinh nghiệm thực tập chưa?
   - Bạn học và làm nội dung bằng gì?
   - Mục tiêu nghề nghiệp là gì?
 
-### 5.10 Contact
+### 5.11 Contact
 - Form liên hệ tối giản, thân thiện.
 - Thông tin email, social link, LinkedIn, CV.
 - CTA cuối trang cực rõ.
