@@ -6,32 +6,39 @@ const revealItems = document.querySelectorAll('.reveal');
 const counters = document.querySelectorAll('[data-counter]');
 const faqItems = document.querySelectorAll('.faq-item');
 const form = document.querySelector('.contact-form');
+const heroVisual = document.querySelector('.hero-visual');
+const tiltItems = document.querySelectorAll('.dashboard-card, .floating-note');
 
 const setHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 10);
   backToTop.classList.toggle('is-visible', window.scrollY > 400);
 };
 
-setHeaderState();
+if (header && backToTop) {
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
+}
 
-navToggle.addEventListener('click', () => {
-  const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-  navToggle.setAttribute('aria-expanded', String(!expanded));
-  nav.classList.toggle('is-open');
-});
-
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('is-open');
   });
-});
 
-window.addEventListener('scroll', setHeaderState, { passive: true });
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -82,10 +89,31 @@ faqItems.forEach((item) => {
   });
 });
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const data = new FormData(form);
-  const name = String(data.get('name') || 'bạn');
-  alert(`Cảm ơn ${name}! Mình đã nhận được lời nhắn. Hãy nối form này với backend/email service nhé.`);
-  form.reset();
-});
+if (heroVisual && tiltItems.length > 0) {
+  heroVisual.addEventListener('mousemove', (event) => {
+    const rect = heroVisual.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    tiltItems.forEach((item, index) => {
+      const depth = (index + 1) * 1.6;
+      item.style.transform = `translate3d(${x * depth * 4}px, ${y * depth * 4}px, 0)`;
+    });
+  });
+
+  heroVisual.addEventListener('mouseleave', () => {
+    tiltItems.forEach((item) => {
+      item.style.transform = '';
+    });
+  });
+}
+
+if (form) {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get('name') || 'bạn');
+    alert(`Cảm ơn ${name}! Mình đã nhận được lời nhắn. Hãy nối form này với backend/email service nhé.`);
+    form.reset();
+  });
+}
